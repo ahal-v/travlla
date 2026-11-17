@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext.jsx";
 import BookPackageModal from "./BookPackageModal.jsx";
 import {
@@ -45,7 +45,7 @@ function useCategories() {
   return items;
 }
 
-const PAGE_SIZE = 3; 
+const PAGE_SIZE = 3;
 
 
 export function usePaging(list, size = PAGE_SIZE) {
@@ -78,14 +78,14 @@ export function Pager({ page, pages, onChange }) {
 }
 
 const menu = [
-  { label: "Home", items: ["Home 1", "Home 2", "Home 3", "Home 4"] },
-  { label: "About" },
+  { label: "Home", to: "/" },
+  { label: "About", href: "#about" },
   { label: "Pages", items: ["Services", "Gallery", "Testimonial", "Tour Guide", "FAQ", "Pricing", "404"] },
-  { label: "Destinations", items: ["Grid 1", "Grid 2", "Grid 3", "Detail"] },
-  { label: "Tours", items: ["List Style", "Grid 1", "Grid 2", "Detail"] },
+  { label: "Destinations", to: "/#destinations" },
+  { label: "Tours", to: "/#tours" },
   { label: "Blogs", items: ["Blog Grid", "Blog List", "Blog Detail"] },
   { label: "Taxi Booking", to: "/taxi-booking" },
-  { label: "Contact" },
+  { label: "Contact", to: "/#contact" },
 ];
 
 const destinations = ["Paris", "Maldives", "Hong Kong", "Thailand", "Bangkok", "Tokyo", "Spain", "California"];
@@ -148,10 +148,22 @@ function Heading({ title, sub }) {
 export function Header() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout();
     navigate("/");
+  };
+
+  // Home / Destinations links: if we are already on the home page just scroll,
+  // otherwise let the router go to the home page (App scrolls to the section).
+  const goTo = (e, to) => {
+    const isHomeLink = to === "/" || to.startsWith("/#");
+    if (!isHomeLink || location.pathname !== "/") return;
+    e.preventDefault();
+    const id = to.split("#")[1];
+    if (id) document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -167,9 +179,9 @@ export function Header() {
                   {m.items.map((x) => <NavDropdown.Item key={x} href="#">{x}</NavDropdown.Item>)}
                 </NavDropdown>
               ) : m.to ? (
-                <Nav.Link key={m.label} as={Link} to={m.to}>{m.label}</Nav.Link>
+                <Nav.Link key={m.label} as={Link} to={m.to} onClick={(e) => goTo(e, m.to)}>{m.label}</Nav.Link>
               ) : (
-                <Nav.Link key={m.label} href="#">{m.label}</Nav.Link>
+                <Nav.Link key={m.label} href={m.href || "#"}>{m.label}</Nav.Link>
               )
             )}
           </Nav>
@@ -680,7 +692,7 @@ export function Footer() {
     Legal: ["Terms & Condition", "Privacy Policy", "Contact", "Careers", "Help"],
   };
   return (
-    <footer className="tv-footer">
+    <footer className="tv-footer" id="about">
       <Container>
         <Row className="g-4 py-5">
           <Col lg={3}>
@@ -720,6 +732,22 @@ export function Footer() {
 }
 
 export default function App() {
+  const { hash } = useLocation();
+
+  // Arriving on the home page from another page: go to the section in the URL
+  // (e.g. /#destinations) or to the top when there is none.
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    const t = setTimeout(
+      () => document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" }),
+      100
+    );
+    return () => clearTimeout(t);
+  }, [hash]);
+
   return (
     <>
       <Header />
