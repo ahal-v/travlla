@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap");
+
+:root {
+  --sea: #0e5a6b;
+  --sand: #f6efe3;
+  --sun: #f2a541;
+  --ink: #12303a;
+}
+body { font-family: "DM Sans", sans-serif; color: var(--ink); }
+h1, h2, h3, .section-title, .tv-logo { font-family: "Fraunces", serif; }
+a { text-decoration: none; }
+.py-6 { padding: 5.5rem 0; }
+.bg-sand { background: var(--sand); }
+.bg-ink { background: var(--ink); }
+.section-title { font-weight: 700; font-size: clamp(1.7rem, 3vw, 2.5rem); }
+
+.btn-sun { background: var(--sun); border: 0; color: var(--ink); font-weight: 700; border-radius: 50rem; padding: .6rem 1.5rem; }
+.btn-sun:hover, .btn-sun:focus-visible { background: #e19328; color: var(--ink); }
+
+/* Nav */
+.tv-nav { background: #fff; box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+.tv-logo { font-size: 1.6rem; font-weight: 700; color: var(--sea); }
+.tv-nav .nav-link { color: var(--ink); font-weight: 500; padding: 1rem .9rem !important; }
+.tv-nav .nav-link:hover { color: var(--sea); }
+.social { color: var(--sea); }
+
+/* Hero */
+.hero {
+  position: relative; padding: 9rem 0 11rem;
+  background: linear-gradient(rgba(14,90,107,.55), rgba(18,48,58,.75)), url("https://picsum.photos/seed/hero-travel/1800/900") center/cover;
+}
+.hero-kicker { font-size: 1.2rem; letter-spacing: .1em; }
+.hero-title { font-size: clamp(4rem, 12vw, 9rem); font-weight: 700; line-height: 1; margin-bottom: 1rem; }
+.search-wrap { position: relative; margin-top: -4rem; z-index: 5; }
+.search-box { background: #fff; border-radius: 1.2rem; padding: 1.5rem; box-shadow: 0 18px 50px rgba(0,0,0,.15); transform: translateY(5rem); }
+.hero + section { padding-top: 9rem; }
+.search-box .form-label { font-weight: 700; font-size: .85rem; }
+
+/* Destinations */
+.dest-card { display: flex; align-items: flex-end; aspect-ratio: 3/4; border-radius: 1.2rem; background-size: cover; background-position: center; overflow: hidden; position: relative; color: #fff; }
+.dest-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 50%, rgba(0,0,0,.7)); }
+.dest-card span { position: relative; z-index: 1; padding: 1.2rem; font-family: "Fraunces", serif; font-size: 1.4rem; font-weight: 700; }
+
+.mini-box { display: flex; gap: .8rem; background: #fff; padding: 1rem; border-radius: 1rem; height: 100%; }
+.mini-box i { font-size: 1.8rem; color: var(--sea); }
+
+/* Brands */
+.brands { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; opacity: .6; }
+.brand { font-weight: 700; font-size: 1.2rem; }
+
+/* Video */
+.video-sec { padding: 6rem 0; background: linear-gradient(rgba(14,90,107,.85), rgba(14,90,107,.9)), url("https://picsum.photos/seed/video-bg/1600/700") center/cover; }
+.play { width: 84px; height: 84px; margin: 0 auto 1.5rem; display: grid; place-items: center; font-size: 2.5rem; color: var(--ink); background: var(--sun); border-radius: 50%; }
+.play:hover { color: var(--ink); transform: scale(1.06); }
+.play { transition: transform .2s; }
+
+/* Services */
+.service-card { background: var(--sand); border-radius: 1.2rem; }
+.service-icon { font-size: 2.4rem; color: var(--sea); }
+.step { color: var(--sun); font-weight: 700; }
+
+/* Places */
+.place-pill { display: flex; flex-direction: column; background: rgba(255,255,255,.08); border-radius: .9rem; padding: .9rem 1.1rem; color: #fff; transition: background .2s; }
+.place-pill:hover { background: var(--sun); color: var(--ink); }
+
+/* Tours */
+.tour-card { border: 0; border-radius: 1.2rem; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.08); }
+.tour-card img { height: 220px; object-fit: cover; }
+.badge-days { position: absolute; left: 1rem; bottom: 1rem; background: #fff; border-radius: 50rem; padding: .2rem .8rem; font-size: .8rem; font-weight: 700; }
+.price { color: var(--sea); font-weight: 700; font-size: 1.2rem; white-space: nowrap; }
+.price small { font-size: .7rem; color: #777; }
+
+/* Steps */
+.offer { height: 100%; min-height: 340px; border-radius: 1.2rem; background-size: cover; color: #fff; padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
+.offer::before { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(0,0,0,.65)); }
+.offer > * { position: relative; }
+.offer h2 { font-size: 3.5rem; font-weight: 700; margin: 0; }
+.step-box { position: relative; height: 100%; background: #fff; border-radius: 1.2rem; padding: 2rem 1.4rem; }
+.step-box i { font-size: 2.4rem; color: var(--sea); }
+.step-n { position: absolute; top: 1rem; right: 1.2rem; font-family: "Fraunces", serif; font-size: 2rem; color: var(--sun); }
+
+/* Reviews */
+.review { max-width: 720px; }
+.avatar { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; margin-bottom: .5rem; }
+.carousel-indicators [data-bs-target] { background-color: var(--sea); }
+
+/* Adventure */
+.adventure { padding: 7rem 0; background: linear-gradient(rgba(18,48,58,.6), rgba(18,48,58,.7)), url("https://picsum.photos/seed/adventure/1800/700") center/cover fixed; }
+
+/* Blog */
+.blog-card img { border-radius: 1rem; height: 200px; object-fit: cover; }
+.blog-card a { color: var(--ink); }
+.blog-card a:hover { color: var(--sea); }
+
+/* Footer */
+.tv-footer { background: #0c2229; color: #fff; }
+.tv-footer .tv-logo { color: #fff; }
+.tv-footer a { color: rgba(255,255,255,.75); }
+.tv-footer a:hover { color: var(--sun); }
+.tv-footer li { margin-bottom: .45rem; }
+.insta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.insta img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: .5rem; }
+
+@media (max-width: 767px) {
+  .hero { padding-bottom: 6rem; }
+  .search-box { transform: none; }
+  .hero + section { padding-top: 4rem; }
+  .adventure { background-attachment: scroll; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

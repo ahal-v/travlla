@@ -1,0 +1,15 @@
+.adm { display: flex; min-height: 100vh; background: #f4f6f8; }
+.adm-side { width: 250px; flex-shrink: 0; background: #12303a; color: #fff; display: flex; flex-direction: column; padding: 1.2rem; position: sticky; top: 0; height: 100vh; }
+.adm-brand { font-family: "Fraunces", serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
+.adm-link { display: flex; align-items: center; gap: .7rem; color: rgba(255,255,255,.75); padding: .7rem .9rem; border-radius: .7rem; margin-bottom: .25rem; text-decoration: none; }
+.adm-link:hover { color: #fff; background: rgba(255,255,255,.08); }
+.adm-link.active { background: #f2a541; color: #12303a; font-weight: 700; }
+.adm-main { flex: 1; min-width: 0; }
+.adm-top { background: #fff; padding: .6rem 1.2rem; display: flex; align-items: center; gap: .5rem; border-bottom: 1px solid #e5e8eb; }
+.adm-card { background: #fff; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 18px rgba(0,0,0,.05); }
+.adm-card.p-0 { padding: 0; }
+.adm-thumb { width: 56px; height: 42px; object-fit: cover; border-radius: .4rem; }
+@media (max-width: 991px) {
+  .adm-side { position: fixed; z-index: 50; left: -260px; transition: left .2s; }
+  .adm-side.open { left: 0; }
+}
